@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Map</string>
+    <string name="map_api_key">AIzaSyBdEjz279yoAA7uuwYUvCAJmMyj-1MbiVw</string>
+    <string name="normal_mode">Chế độ Normal</string>
+    <string name="hybrid_mode">Chế độ Hybrid</string>
+    <string name="satellite_mode">Chế độ Satellite</string>
+    <string name="terrain_mode">Chế độ Terrain</string>
+    <string name="none_mode">Chế độ None</string>
+    <string name="image_des">Image Descreption</string>
+</resources>
