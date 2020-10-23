@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/find_hotel"
+        android:title="@string/find_hotel"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/find_coffe"
+        android:title="@string/find_coffe"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/find_restaurant"
+        android:title="@string/find_restaurant"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/my_position"
+        android:title="@string/vi_tri_hien_tai"
+        app:showAsAction="never" />
+</menu>

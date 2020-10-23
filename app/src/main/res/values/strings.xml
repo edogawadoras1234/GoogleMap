@@ -7,4 +7,9 @@
     <string name="terrain_mode">Chế độ Terrain</string>
     <string name="none_mode">Chế độ None</string>
     <string name="image_des">Image Descreption</string>
+    <string name="find_near">Tìm kiếm quanh đây</string>
+    <string name="find_hotel">Tìm kiếm khách sạn</string>
+    <string name="find_coffe">Tìm kiếm quán cà phê</string>
+    <string name="find_restaurant">Tìm kiếm nhà hàng</string>
+    <string name="vi_tri_hien_tai">Vị trí của tôi</string>
 </resources>

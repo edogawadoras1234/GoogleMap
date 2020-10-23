@@ -8,7 +8,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,12 +33,17 @@ import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener {
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.searchView)
     SearchView searchView;
     GoogleMap map;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.button_find_near)
+    Button btn_find;
     SupportMapFragment mapFragment;
     TextView txt_name, txt_infor2;
     ImageView img_place;
@@ -61,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         txt_name = custom_infor.findViewById(R.id.text_name);
         txt_infor2 = custom_infor.findViewById(R.id.text_infor2);
         img_place = custom_infor.findViewById(R.id.image_place);
-
+        ButterKnife.bind(this);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -86,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             .title(address.getFeatureName())
                             .snippet(address.getAddressLine(0))
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng2, 20f));
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng2, 16.0f));
                 } else {
                     Toast.makeText(MainActivity.this, "Không tìm thấy địa chỉ nhập!", Toast.LENGTH_LONG).show();
                 }
@@ -107,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         googleMap.setBuildingsEnabled(true);
         googleMap.setOnInfoWindowClickListener(this);
         googleMap.setOnMapClickListener(this);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Override
             public View getInfoWindow(Marker marker) {
@@ -123,6 +131,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Utils.createMark(this, map);
     }
 
+    @SuppressLint("NonConstantResourceId")
+    @OnClick(R.id.button_find_near)
+    void onClickFindNear() {
+        menu_Popup();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -173,5 +186,37 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapClick(LatLng latLng) {
         Toast.makeText(this, "Chuc nang click vao ban do chua hoan thien", Toast.LENGTH_SHORT).show();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    public void menu_Popup() {
+        PopupMenu popupMenu = new PopupMenu(this, btn_find);
+        popupMenu.getMenuInflater().inflate(R.menu.find_near, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(menuItem -> {
+
+            switch (menuItem.getItemId()) {
+                case R.id.find_hotel:
+                    map.clear();
+                    Utils.findHotel(getApplicationContext(), map);
+                    break;
+
+                case R.id.find_coffe:
+                    map.clear();
+                    Utils.findCoffe(getApplicationContext(), map);
+                    break;
+
+                case R.id.find_restaurant:
+                    map.clear();
+                    Utils.findRestaurant(getApplicationContext(), map);
+                    break;
+                case R.id.my_position:
+                    map.clear();
+
+                    break;
+            }
+            return false;
+        });
+
+        popupMenu.show();
     }
 }

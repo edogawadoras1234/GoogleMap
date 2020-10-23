@@ -21,13 +21,25 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginEnd="9dp"
-        android:queryHint="Search..."
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/white"
-        app:showAsAction="ifRoom|collapseActionView"
+        android:queryHint="Search..."
+        app:layout_constraintBottom_toTopOf="@+id/button_find_near"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/myMap" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <Button
+        android:id="@+id/button_find_near"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginBottom="480dp"
+        android:text="@string/find_near"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
